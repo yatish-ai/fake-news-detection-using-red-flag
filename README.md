@@ -129,8 +129,8 @@ docker-compose up --build
 
 ### 1. Deployed Public URLs
 *(Provide your active URLs here after deployment)*
-- **Frontend URL**: `https://realtime-fake-news-detection.vercel.app` (Example)
-- **Backend API URL**: `https://realtime-fake-news-backend.onrender.com` (Example)
+- **Frontend URL**: `https://frontend-sable-sigma-hvuoml3d3.vercel.app/`
+- **Backend API URL**: `https://fake-news-detection-using-red-flag.onrender.com`
 
 ---
 
@@ -151,7 +151,7 @@ To link the Vercel frontend to the Render API:
 2. Go to **Project Settings** -> **Environment Variables**.
 3. Add a new variable:
    - **Key**: `VITE_API_URL`
-   - **Value**: `https://your-backend-render-app-url.onrender.com` (Ensure no trailing slash)
+   - **Value**: `https://fake-news-detection-using-red-flag.onrender.com` (Ensure no trailing slash)
 4. Click **Save**. Trigger a redeployment for the variables to bind.
 
 #### 3. Docker Containers (`docker-compose.yml` / CLI)
