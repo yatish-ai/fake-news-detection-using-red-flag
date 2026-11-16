@@ -1,0 +1,37 @@
+# Node.js dependencies
+node_modules/
+dist/
+build/
+
+# Python environment and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+venv/
+.venv/
+env/
+
+# Datasets and model archives
+dataset/
+*.csv
+*.zip
+*.tar.gz
+
+# IDE and system configurations
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Environments and credentials
+.env
+.env.local
+.env.production
+backend/.env
+frontend/.env
+
+# Test coverage logs
+coverage/
+*.log

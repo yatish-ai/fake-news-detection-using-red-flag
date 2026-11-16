@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #080C14;
+  color: #E2E8F0;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Custom glowing effects */
+.glow-card-purple {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 20px rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: rgba(21, 28, 44, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.glow-card-real {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 25px rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(21, 28, 44, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.glow-card-fake {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 25px rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: rgba(21, 28, 44, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+/* Scrollbar customizations */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080C14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Shimmer background animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #151C2C 25%, #243049 50%, #151C2C 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
