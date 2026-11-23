@@ -28,6 +28,9 @@ export default function Detector({ presetArticle, clearPreset }) {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [scrapeError, setScrapeError] = useState(null);
+  const [llmResult, setLlmResult] = useState(null);
+  const [llmLoading, setLlmLoading] = useState(false);
+  const [llmError, setLlmError] = useState(null);
   
   // History state
   const [history, setHistory] = useState([]);
@@ -117,30 +120,43 @@ export default function Detector({ presetArticle, clearPreset }) {
 
     try {
       setLoading(true);
+      setLlmLoading(true);
       setError(null);
+      setLlmError(null);
+      setLlmResult(null);
       
-      const res = await axios.post(`${API_URL}/predict`, {
-        title: activeTitle,
-        text: activeText
-      });
+      const [predictionResponse, contextualResponse] = await Promise.allSettled([
+        axios.post(`${API_URL}/predict`, { title: activeTitle, text: activeText }),
+        axios.post(`${API_URL}/analyze-context`, { title: activeTitle, text: activeText })
+      ]);
       
-      if (res.data) {
-        setResult(res.data);
+      if (predictionResponse.status === 'fulfilled' && predictionResponse.value.data) {
+        const predictionData = predictionResponse.value.data;
+        setResult(predictionData);
         
         // Save to local storage history
         saveToHistory({
           id: Date.now(),
           title: activeTitle,
-          prediction: res.data.prediction,
-          confidence: res.data.confidence,
+          prediction: predictionData.prediction,
+          confidence: predictionData.confidence,
           timestamp: new Date().toISOString()
         });
+      } else if (predictionResponse.status === 'rejected') {
+        throw predictionResponse.reason;
+      }
+      if (contextualResponse.status === 'fulfilled') {
+        setLlmResult(contextualResponse.value.data);
+      } else {
+        console.error('LLM contextual analysis failed:', contextualResponse.reason);
+        setLlmError('Contextual analysis could not be completed. Your ML prediction is still available.');
       }
     } catch (err) {
       console.error(err);
       setError("Backend connection failed. Model might still be starting on Render. Please try again.");
     } finally {
       setLoading(false);
+      setLlmLoading(false);
     }
   };
 
@@ -149,6 +165,8 @@ export default function Detector({ presetArticle, clearPreset }) {
     setText('');
     setUrl('');
     setResult(null);
+    setLlmResult(null);
+    setLlmError(null);
     setError(null);
   };
 
@@ -374,6 +392,60 @@ export default function Detector({ presetArticle, clearPreset }) {
                 <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-emerald-500" /> Indicates Real Phrasing</span>
                 <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-rose-500" /> Indicates Fake Phrasing</span>
               </div>
+            </div>
+
+
+            {/* LLM Contextual Analysis */}
+            <div className="mt-6 p-5 rounded-xl bg-slate-950/50 border border-indigo-500/20">
+              <div className="flex items-start justify-between gap-3 mb-4">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-indigo-400" />
+                  <div>
+                    <h4 className="text-sm font-bold text-white">AI Contextual Analysis</h4>
+                    <p className="text-[11px] text-slate-500">LLM-powered claim and context review</p>
+                  </div>
+                </div>
+                {llmLoading && <Loader2 className="w-4 h-4 text-indigo-400 animate-spin" />}
+              </div>
+              {llmLoading ? (
+                <div className="py-5 text-center">
+                  <p className="text-sm text-indigo-300">Analyzing claims and context...</p>
+                  <p className="text-xs text-slate-500 mt-1">This may take a few seconds.</p>
+                </div>
+              ) : llmError ? (
+                <p className="text-xs text-amber-300">{llmError}</p>
+              ) : llmResult ? (
+                <div className="space-y-4">
+                  <div>
+                    <h5 className="text-xs font-mono font-bold text-slate-400 uppercase mb-1">Summary</h5>
+                    <p className="text-sm text-slate-300 leading-relaxed">{llmResult.summary}</p>
+                  </div>
+                  {[
+                    ['Main Claims', llmResult.claims],
+                    ['Contextual Concerns', llmResult.concerns],
+                    ['Missing Evidence', llmResult.missing_evidence],
+                    ['Suggested Checks', llmResult.suggested_checks]
+                  ].map(([heading, items]) => items?.length > 0 && (
+                    <div key={heading}>
+                      <h5 className="text-xs font-mono font-bold text-slate-400 uppercase mb-2">{heading}</h5>
+                      <ul className="space-y-1.5">
+                        {items.map((item, idx) => (
+                          <li key={idx} className="flex gap-2 text-xs text-slate-300 leading-relaxed">
+                            <span className="text-indigo-400 mt-0.5">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                  <div className="p-3 rounded-lg bg-indigo-500/5 border border-indigo-500/15">
+                    <h5 className="text-xs font-mono font-bold text-indigo-300 uppercase mb-1">Contextual Assessment</h5>
+                    <p className="text-xs text-slate-300 leading-relaxed">{llmResult.assessment}</p>
+                  {llmResult.model && <p className="text-[10px] text-slate-500 mt-2">Model: {llmResult.model}</p>}
+                  {llmResult.disclaimer && <p className="text-[10px] text-slate-500 mt-2">{llmResult.disclaimer}</p>}
+                  <p className="text-[10px] text-amber-400/80 mt-2">AI context analysis is not independent fact-checking.</p>
+                </div>
+              ) : null}
             </div>
 
             {/* Red Flag Analysis */}
