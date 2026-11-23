@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 body {
-  background-color: #080C14;
-  color: #E2E8F0;
+  background-color: #FFFFFF;
+  color: #111827;
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
@@ -17,14 +17,14 @@ body {
 .glow-card-purple {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 20px rgba(99, 102, 241, 0.15);
   border: 1px solid rgba(99, 102, 241, 0.2);
-  background: rgba(21, 28, 44, 0.7);
+  background: #F3F4F6;
   backdrop-filter: blur(10px);
 }
 
 .glow-card-real {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 25px rgba(16, 185, 129, 0.2);
   border: 1px solid rgba(16, 185, 129, 0.3);
-  background: rgba(21, 28, 44, 0.85);
+  background: #F3F4F6;
   backdrop-filter: blur(10px);
 }
 
@@ -41,14 +41,14 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #080C14;
+  background: #FFFFFF;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
+  background: #D1D5DB;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #9CA3AF;
 }
 
 /* Shimmer background animation */
@@ -62,7 +62,18 @@ body {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #151C2C 25%, #243049 50%, #151C2C 75%);
+  background: linear-gradient(90deg, #E5E7EB 25%, #F3F4F6 50%, #E5E7EB 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite linear;
 }
+
+
+/* clearAI light theme overrides */
+[class~="bg-slate-950"], [class~="bg-gray-950"], [class~="bg-[#080C14]"] { background-color: #FFFFFF !important; }
+[class~="bg-slate-900"], [class~="bg-gray-900"], [class~="bg-slate-900/50"], [class~="bg-slate-900/70"] { background-color: #F3F4F6 !important; }
+[class~="bg-slate-800"], [class~="bg-gray-800"], [class~="bg-slate-800/50"], [class~="bg-slate-800/70"] { background-color: #E5E7EB !important; }
+[class~="bg-slate-700"], [class~="bg-gray-700"] { background-color: #D1D5DB !important; }
+[class~="text-white"], [class~="text-slate-100"], [class~="text-slate-200"], [class~="text-slate-300"], [class~="text-gray-100"], [class~="text-gray-200"], [class~="text-gray-300"] { color: #111827 !important; }
+[class~="text-slate-400"], [class~="text-slate-500"], [class~="text-gray-400"], [class~="text-gray-500"] { color: #6B7280 !important; }
+[class~="border-slate-800"], [class~="border-slate-700"], [class~="border-gray-800"], [class~="border-gray-700"] { border-color: #D1D5DB !important; }
+input, textarea, select { background-color: #FFFFFF !important; color: #111827 !important; border-color: #D1D5DB !important; }
