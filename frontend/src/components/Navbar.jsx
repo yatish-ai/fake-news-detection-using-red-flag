@@ -20,7 +20,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
               <Shield className="w-6 h-6 animate-pulse" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent">
-              VERITAS<span className="text-indigo-500 text-xs ml-1 font-mono tracking-widest border border-indigo-500/30 px-1 rounded bg-indigo-500/10">AI</span>
+              clear<span className="text-indigo-500 text-xs ml-1 font-mono tracking-widest border border-indigo-500/30 px-1 rounded bg-indigo-500/10">AI</span>
             </span>
           </div>
 
