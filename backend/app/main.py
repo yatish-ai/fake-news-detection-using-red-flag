@@ -10,6 +10,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from bs4 import BeautifulSoup
 from typing import List, Dict, Any, Optional
 
+from app.llm_service import analyze_article as llm_analyze_article
+
 from app.schemas import (
     NewsRequest, 
     PredictionResponse, 
@@ -424,3 +426,17 @@ def get_mock_news():
             }
         ]
     }
+
+
+
+@app.post("/analyze-context")
+def analyze_context(payload: NewsRequest):
+    """Run LLM contextual analysis separately from the existing ML prediction."""
+    try:
+        return llm_analyze_article(payload.title, payload.text)
+    except ValueError as e:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+    except RuntimeError as e:
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=str(e))
+    except Exception:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Contextual analysis failed.")
