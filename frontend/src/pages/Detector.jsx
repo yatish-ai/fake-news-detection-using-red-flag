@@ -444,6 +444,7 @@ export default function Detector({ presetArticle, clearPreset }) {
                   {llmResult.model && <p className="text-[10px] text-slate-500 mt-2">Model: {llmResult.model}</p>}
                   {llmResult.disclaimer && <p className="text-[10px] text-slate-500 mt-2">{llmResult.disclaimer}</p>}
                   <p className="text-[10px] text-amber-400/80 mt-2">AI context analysis is not independent fact-checking.</p>
+                  </div>
                 </div>
               ) : null}
             </div>
