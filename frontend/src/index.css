@@ -68,12 +68,13 @@ body {
 }
 
 
-/* clearAI light theme overrides */
-[class~="bg-slate-950"], [class~="bg-gray-950"], [class~="bg-[#080C14]"] { background-color: #FFFFFF !important; }
-[class~="bg-slate-900"], [class~="bg-gray-900"], [class~="bg-slate-900/50"], [class~="bg-slate-900/70"] { background-color: #F3F4F6 !important; }
-[class~="bg-slate-800"], [class~="bg-gray-800"], [class~="bg-slate-800/50"], [class~="bg-slate-800/70"] { background-color: #E5E7EB !important; }
-[class~="bg-slate-700"], [class~="bg-gray-700"] { background-color: #D1D5DB !important; }
-[class~="text-white"], [class~="text-slate-100"], [class~="text-slate-200"], [class~="text-slate-300"], [class~="text-gray-100"], [class~="text-gray-200"], [class~="text-gray-300"] { color: #111827 !important; }
-[class~="text-slate-400"], [class~="text-slate-500"], [class~="text-gray-400"], [class~="text-gray-500"] { color: #6B7280 !important; }
-[class~="border-slate-800"], [class~="border-slate-700"], [class~="border-gray-800"], [class~="border-gray-700"] { border-color: #D1D5DB !important; }
+/* clearAI light theme overrides - improve contrast */
+[class*="bg-slate-950"], [class*="bg-gray-950"], [class*="bg-[#080C14]"] { background-color: #FFFFFF !important; }
+[class*="bg-slate-900"], [class*="bg-gray-900"], [class*="bg-slate-900/"] { background-color: #F3F4F6 !important; }
+[class*="bg-slate-800"], [class*="bg-gray-800"], [class*="bg-slate-800/"] { background-color: #E5E7EB !important; }
+[class*="bg-slate-700"], [class*="bg-gray-700"] { background-color: #D1D5DB !important; }
+[class*="bg-slate-600"], [class*="bg-gray-600"] { background-color: #D1D5DB !important; }
+[class*="text-white"], [class*="text-slate-100"], [class*="text-slate-200"], [class*="text-slate-300"], [class*="text-gray-100"], [class*="text-gray-200"], [class*="text-gray-300"] { color: #111827 !important; }
+[class*="text-slate-400"], [class*="text-slate-500"], [class*="text-gray-400"], [class*="text-gray-500"] { color: #6B7280 !important; }
+[class*="border-slate-800"], [class*="border-slate-700"], [class*="border-gray-800"], [class*="border-gray-700"] { border-color: #D1D5DB !important; }
 input, textarea, select { background-color: #FFFFFF !important; color: #111827 !important; border-color: #D1D5DB !important; }
