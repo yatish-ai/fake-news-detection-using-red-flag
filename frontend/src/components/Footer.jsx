@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
         <div className="border-t border-slate-900/50 mt-6 pt-4 text-center">
           <p className="text-xs text-slate-600">
-            © {new Date().getFullYear()} VeritasAI. Licensed under the MIT License. Data models are run purely locally for fast response and total privacy.
+            © {new Date().getFullYear()} clearAI. Licensed under the MIT License. Data models are run purely locally for fast response and total privacy.
           </p>
         </div>
       </div>
