@@ -1,6 +1,6 @@
-# ClearAI — Real-Time Fake News Detection System 🛡️🤖
+# clearAI — Real-Time Fake News Detection System 🛡️🤖
 
-**ClearAI** is a real-time fake news detection application that predicts whether a news article is **REAL** or **FAKE**. It combines a machine-learning classifier with a separate red-flag analysis to help users examine potentially misleading editorial patterns. It can also analyze article URLs and display trending headlines.
+**clearAI** is a real-time fake news detection application that predicts whether a news article is **REAL** or **FAKE**. It combines a machine-learning classifier with a separate red-flag analysis to help users examine potentially misleading editorial patterns. It can also analyze article URLs and display trending headlines.
 
 The project includes a React frontend, FastAPI backend, automated tests, Docker support, and GitHub Actions CI/CD workflows.
 
@@ -120,7 +120,7 @@ docker-compose up --build
 ## 🌐 Production Deployment
 
 ### Deployed Public URLs
-- **ClearAI Frontend**: https://frontend-sable-sigma-hvuoml3d3.vercel.app/
+- **clearAI Frontend**: https://frontend-sable-sigma-hvuoml3d3.vercel.app/
 - **Backend API**: https://fake-news-detection-using-red-flag.onrender.com
 
 ### Backend Environment Variable
@@ -160,6 +160,6 @@ The Passive-Aggressive classifier provides a raw margin score through `decision_
 ---
 
 ## 🚩 Red-Flag Analysis
-ClearAI returns a separate red-flag analysis alongside the REAL/FAKE prediction. It checks the supplied headline and article text for potentially concerning editorial patterns, including sensational wording, clickbait phrases, excessive punctuation or capitalization, absolute claims, and missing visible source attribution.
+clearAI returns a separate red-flag analysis alongside the REAL/FAKE prediction. It checks the supplied headline and article text for potentially concerning editorial patterns, including sensational wording, clickbait phrases, excessive punctuation or capitalization, absolute claims, and missing visible source attribution.
 
 The response includes a 0–100 heuristic indicator score, a Low/Moderate/High level, individual flags with severity and matched evidence, and a disclaimer. The score is rule-based; it is **not** a probability that the article is fake. A red flag is not proof that a story is false, and no detected flags do not prove that it is true. The checks do not independently verify factual claims or publisher reputation.
