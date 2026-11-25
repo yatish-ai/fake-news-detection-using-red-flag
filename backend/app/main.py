@@ -5,6 +5,7 @@ import joblib
 import urllib.request
 import re
 import json
+import logging
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from bs4 import BeautifulSoup
@@ -24,6 +25,8 @@ from app.schemas import (
     RedFlagItem,
     RedFlagAnalysis
 )
+
+logger = logging.getLogger(__name__)
 
 # Paths to the model files
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -439,4 +442,5 @@ def analyze_context(payload: NewsRequest):
     except RuntimeError as e:
         raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=str(e))
     except Exception:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Contextual analysis failed.")
+        logger.exception("Groq contextual analysis failed")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Contextual analysis failed. Check backend logs for details.")
