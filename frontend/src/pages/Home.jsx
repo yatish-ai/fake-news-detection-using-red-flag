@@ -79,22 +79,22 @@ export default function Home({ onAnalyze }) {
   return (
     <div className="space-y-12 pb-16">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-12 lg:py-20 rounded-3xl bg-gradient-to-br from-indigo-950/40 via-slate-900/60 to-slate-950/80 border border-slate-800 shadow-2xl">
+      <section className="relative overflow-hidden py-12 lg:py-20 rounded-3xl border shadow-xl" style={{ background: "linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 55%, #FDF2F8 100%)", borderColor: "#D9E1F0" }}>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(99,102,241,0.08),transparent)] pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-mono text-indigo-400">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono" style={{ background: "#E0E7FF", border: "1px solid #C7D2FE", color: "#3730A3" }}>
             <span className="flex h-2 w-2 rounded-full bg-indigo-400 animate-ping" />
             <span>DevOps + Artificial Intelligence</span>
           </div>
           
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight" style={{ color: "#111827" }}>
             Verify News Authenticity <br />
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               In Real Time With AI
             </span>
           </h1>
           
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: "#374151" }}>
             A state-of-the-art detector powered by a trained PassiveAggressive machine learning pipeline. Stop misinformation instantly with detailed word contribution analysis.
           </p>
 
@@ -108,7 +108,7 @@ export default function Home({ onAnalyze }) {
             </button>
             <a
               href="#trending"
-              className="px-6 py-3 bg-slate-950/60 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 font-semibold rounded-xl transition-all duration-300"
+              className="px-6 py-3 border font-semibold rounded-xl transition-all duration-300" style={{ background: "#FFFFFF", borderColor: "#CBD5E1", color: "#1F2937" }}
             >
               Browse Live Articles
             </a>
@@ -123,13 +123,13 @@ export default function Home({ onAnalyze }) {
           return (
             <div 
               key={idx} 
-              className="p-5 rounded-2xl bg-dark-card border border-dark-border hover:border-slate-700 transition-all duration-300 hover:translate-y-[-2px]"
+              className="p-5 rounded-2xl border transition-all duration-300 hover:translate-y-[-2px]" style={{ background: "#FFFFFF", borderColor: "#E5E7EB", boxShadow: "0 2px 8px rgba(15,23,42,0.05)" }}
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-slate-400 text-sm font-medium">{stat.label}</span>
+                <span className="text-sm font-medium" style={{ color: "#4B5563" }}>{stat.label}</span>
                 <Icon className={`w-5 h-5 ${stat.color}`} />
               </div>
-              <div className="text-2xl sm:text-3xl font-bold text-white font-mono">{stat.value}</div>
+              <div className="text-2xl sm:text-3xl font-bold font-mono" style={{ color: "#111827" }}>{stat.value}</div>
             </div>
           );
         })}
@@ -142,7 +142,7 @@ export default function Home({ onAnalyze }) {
             <div className="p-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
               <TrendingUp className="w-5 h-5" />
             </div>
-            <h2 className="text-2xl font-bold text-white">Trending Global Headlinese</h2>
+            <h2 className="text-2xl font-bold" style={{ color: "#111827" }}>Trending Global Headlines</h2>
           </div>
           {error && (
             <div className="flex items-center gap-1.5 text-xs text-amber-500 font-medium bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-lg">
@@ -171,7 +171,7 @@ export default function Home({ onAnalyze }) {
             {articles.map((article, idx) => (
               <div 
                 key={idx} 
-                className="group flex flex-col rounded-2xl bg-dark-card border border-dark-border hover:border-slate-700/80 overflow-hidden transition-all duration-300 hover:translate-y-[-4px]"
+                className="group flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 hover:translate-y-[-4px]" style={{ background: "#FFFFFF", borderColor: "#E5E7EB", boxShadow: "0 2px 10px rgba(15,23,42,0.06)" }}
               >
                 {/* Cover Image */}
                 <div className="relative h-48 overflow-hidden bg-slate-950">
@@ -187,16 +187,16 @@ export default function Home({ onAnalyze }) {
 
                 {/* Article Content */}
                 <div className="flex-1 p-5 flex flex-col space-y-3">
-                  <div className="flex items-center gap-1 text-xs text-slate-500 font-mono">
+                  <div className="flex items-center gap-1 text-xs font-mono" style={{ color: "#6B7280" }}>
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{new Date(article.publishedAt).toLocaleDateString(undefined, {month: 'short', day: 'numeric'})}</span>
                   </div>
                   
-                  <h3 className="font-bold text-white group-hover:text-indigo-400 transition-colors line-clamp-2">
+                  <h3 className="font-bold transition-colors line-clamp-2" style={{ color: "#111827" }}>
                     {article.title}
                   </h3>
                   
-                  <p className="text-sm text-slate-400 line-clamp-3 flex-1">
+                  <p className="text-sm line-clamp-3 flex-1" style={{ color: "#4B5563" }}>
                     {article.description || article.content || "No detailed description available for this live article. Click analyze to check the news content."}
                   </p>
 
